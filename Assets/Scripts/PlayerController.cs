@@ -5,8 +5,12 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     float speed = 1f;
+
     float minY = 0.3f;
-    float maxY = 1.4f;
+    float maxY = 1.5f;
+
+    float minX = -1.3f;
+    float maxX = 1.3f;
 
     // Start is called before the first frame update
     void Start()
@@ -17,9 +21,34 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        MoveVertical();
+        MoveHorizontal();
+        ClampVerticalPosition();
+        ClampHorizontalPosition();
+    }
+
+    void MoveVertical()
+    {
         float vertical = Input.GetAxis("Vertical");
         transform.Translate(Vector3.up * vertical * Time.deltaTime * speed);
-        ClampVerticalPosition();
+    }
+
+    void MoveHorizontal()
+    {
+        float horizontal = Input.GetAxis("Horizontal");
+        transform.Translate(Vector3.forward * -horizontal * Time.deltaTime * speed);
+    }
+
+    void ClampHorizontalPosition()
+    {
+        if (transform.position.x < minX)
+        {
+            transform.position = new Vector3(minX, transform.position.y, transform.position.z);
+        }
+        else if (transform.position.x > maxX)
+        {
+            transform.position = new Vector3(maxX, transform.position.y, transform.position.z);
+        }
     }
 
     void ClampVerticalPosition()
