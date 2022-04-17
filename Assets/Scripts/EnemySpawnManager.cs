@@ -38,23 +38,30 @@ public class EnemySpawnManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        ScheduleNextSpawn();
+        SpawnNow();
     }
 
-
+    /// <summary>
+    ///  Coroutine to schedule the next spawn
+    /// </summary>
     private IEnumerator ScheduleSpawn()
     {
         float delay = Random.Range(minSpawnDelay, maxSpawnDelay);
         yield return new WaitForSeconds(delay);
         SpawnNow();
-        ScheduleNextSpawn();
     }
 
+    /// <summary>
+    ///  Schedule the next spawn
+    /// </summary>
     private void ScheduleNextSpawn()
     {
         StartCoroutine(ScheduleSpawn());
     }
 
+    /// <summary>
+    ///  Immediately spawn an enemy and schedule the next spawn
+    /// </summary>
     private void SpawnNow()
     {
         int enemyIdx = Random.Range(0, enemyPrefabs.Count);
@@ -62,11 +69,7 @@ public class EnemySpawnManager : MonoBehaviour
 
         float y = Random.Range(minSpawnY, maxSpawnY);
         enemy.transform.position = new Vector3(spawnX, y, enemy.transform.position.z);
+        ScheduleNextSpawn();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }

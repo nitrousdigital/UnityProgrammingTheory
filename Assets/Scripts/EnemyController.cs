@@ -69,6 +69,25 @@ public class EnemyController : MonoBehaviour
         transform.Translate(Vector3.up * verticalSpeed * Time.deltaTime);
     }
 
+    public void Explode()
+    {
+        Destroy(gameObject);
+    }
+
+    private void OnTriggerEnter(Collider collision)
+    {
+        if (collision.CompareTag("Player")) {
+            GameManager.instance.OnPlayerCrashedIntoEnemyShip(
+                collision.gameObject,
+                gameObject);
+        }
+        else if (collision.CompareTag("PlayerMissile"))
+        {
+            GameManager.instance.OnEnemyHitByMissile(
+                collision.gameObject,
+                gameObject);
+        }
+    }
 
     /// <summary>
     ///  Check whether this enemy has flown outside of the visible bounds of the screen
@@ -78,7 +97,7 @@ public class EnemyController : MonoBehaviour
     {
         if (transform.position.x < minX)
         {
-            gameObject.SetActive(false);
+            Destroy(gameObject);
         }
     }
 

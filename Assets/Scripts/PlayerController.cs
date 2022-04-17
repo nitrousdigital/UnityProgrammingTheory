@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+    [SerializeField] private GameObject torpedoPrefab;
+    [SerializeField] private float missileOffsetX = 0.5f;
+
     float speed = 1f;
 
     float minY = 0.3f;
@@ -25,6 +28,22 @@ public class PlayerController : MonoBehaviour
         MoveHorizontal();
         ClampVerticalPosition();
         ClampHorizontalPosition();
+
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            FireWeapon();
+        }
+    }
+
+    public void Explode()
+    {
+        Destroy(gameObject);
+    }
+
+    private void FireWeapon()
+    {
+        GameObject missile = Instantiate(torpedoPrefab);
+        missile.transform.position = new Vector3(transform.position.x + missileOffsetX, transform.position.y, missile.transform.position.z);
     }
 
     void MoveVertical()
