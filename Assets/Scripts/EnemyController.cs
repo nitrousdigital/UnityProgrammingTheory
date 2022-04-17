@@ -45,11 +45,17 @@ public class EnemyController : AbstractExplodable
         CheckOutOfBounds();
     }
 
+    /// <summary>
+    ///  Move the enemy forward
+    /// </summary>
     void MoveHorizontal()
     {
         transform.Translate(Vector3.forward * horizontalSpeed * Time.deltaTime);
     }
 
+    /// <summary>
+    ///  Move the enemy up/down in a waveform motion
+    /// </summary>
     void MoveVertical()
     {
         // vertical speed follows a waveform
@@ -71,7 +77,8 @@ public class EnemyController : AbstractExplodable
 
     private void OnTriggerEnter(Collider collision)
     {
-        if (collision.CompareTag("Player")) {
+        if (collision.CompareTag("Player"))
+        {
             GameManager.instance.OnPlayerCrashedIntoEnemyShip(
                 collision.gameObject,
                 gameObject);

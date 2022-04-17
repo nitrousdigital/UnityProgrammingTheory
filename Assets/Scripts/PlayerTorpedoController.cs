@@ -23,6 +23,9 @@ public class PlayerTorpedoController : AbstractExplodable
         gameObject.SetActive(false);
     }
 
+    /// <summary>
+    ///  Deactivate the torpedo if it flies out of bounds
+    /// </summary>
     private void CheckBounds()
     {
         if (transform.position.x > maxX)
@@ -32,6 +35,9 @@ public class PlayerTorpedoController : AbstractExplodable
         }
     }
 
+    /// <summary>
+    ///  Move the torpedo forward
+    /// </summary>
     private void MoveTorpedo() {
         transform.Translate(Vector3.forward * speed * Time.deltaTime);
     }

@@ -64,11 +64,15 @@ public class EnemySpawnManager : MonoBehaviour
     /// </summary>
     private void SpawnNow()
     {
+        // spawn a random enemy
         int enemyIdx = Random.Range(0, enemyPrefabs.Count);
         GameObject enemy = Instantiate(enemyPrefabs[enemyIdx]);
 
+        // randomize vertical position
         float y = Random.Range(minSpawnY, maxSpawnY);
         enemy.transform.position = new Vector3(spawnX, y, enemy.transform.position.z);
+
+        // schedule the next spawn
         ScheduleNextSpawn();
     }
 

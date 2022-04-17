@@ -96,6 +96,9 @@ public class PlayerController : AbstractExplodable
         }
     }
 
+    /// <summary>
+    ///  If an inactive torpedo is available then launch it.
+    /// </summary>
     private void FireWeapon()
     {
         GameObject torpedo = FindTorpedo();
@@ -126,18 +129,28 @@ public class PlayerController : AbstractExplodable
         return null;
     }
 
+
+    /// <summary>
+    ///  Handle vertical movement
+    /// </summary>
     void MoveVertical()
     {
         float vertical = Input.GetAxis("Vertical");
         transform.Translate(Vector3.up * vertical * Time.deltaTime * speed);
     }
 
+    /// <summary>
+    ///  Handle horizontal movement
+    /// </summary>
     void MoveHorizontal()
     {
         float horizontal = Input.GetAxis("Horizontal");
         transform.Translate(Vector3.forward * -horizontal * Time.deltaTime * speed);
     }
 
+    /// <summary>
+    ///  Clamp the player to the configured horizontal bounds
+    /// </summary>
     void ClampHorizontalPosition()
     {
         if (transform.position.x < minX)
@@ -150,6 +163,9 @@ public class PlayerController : AbstractExplodable
         }
     }
 
+    /// <summary>
+    ///  Clamp the player to the configured vertical bounds
+    /// </summary>
     void ClampVerticalPosition()
     {
         if (transform.position.y < minY)
