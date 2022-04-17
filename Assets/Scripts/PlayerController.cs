@@ -2,23 +2,51 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerController : MonoBehaviour
+public class PlayerController : MonoBehaviour, Explodable
 {
+    /// <summary>
+    ///  The number of player torpedos that can exist concurrently.
+    /// </summary>
+    [SerializeField] private int ammo = 3;
     [SerializeField] private GameObject torpedoPrefab;
     [SerializeField] private float missileOffsetX = 0.5f;
 
-    float speed = 1f;
+    /// <summary>
+    ///  The explosion prefab to be instantiated when the enemy is destroyed.
+    /// </summary>
+    [SerializeField] private GameObject explosionPrefab;
 
-    float minY = 0.3f;
-    float maxY = 1.5f;
+    private float speed = 1f;
 
-    float minX = -1.3f;
-    float maxX = 1.3f;
+    private float minY = 0.3f;
+    private float maxY = 1.5f;
+
+    private float minX = -1.3f;
+    private float maxX = 1.3f;
+
+    /// <summary>
+    ///  Pool of reusable torpedos
+    /// </summary>
+    private List<GameObject> torpedos;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        InitTorpedoPool();
+    }
+
+    /// <summary>
+    ///  Initialize the pool of reusable torpedos
+    /// </summary>
+    private void InitTorpedoPool()
+    {
+        torpedos = new List<GameObject>();
+        for (int i = 0; i < ammo; i++)
+        {
+            GameObject torpedo = Instantiate(torpedoPrefab);
+            torpedo.SetActive(false);
+            torpedos.Add(torpedo);
+        }
     }
 
     // Update is called once per frame
@@ -35,6 +63,11 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    public GameObject GetExplosionPrefab()
+    {
+        return explosionPrefab;
+    }
+
     public void Explode()
     {
         Destroy(gameObject);
@@ -42,8 +75,30 @@ public class PlayerController : MonoBehaviour
 
     private void FireWeapon()
     {
-        GameObject missile = Instantiate(torpedoPrefab);
-        missile.transform.position = new Vector3(transform.position.x + missileOffsetX, transform.position.y, missile.transform.position.z);
+        GameObject torpedo = FindTorpedo();
+        if (torpedo == null)
+        {
+            return;
+        }
+
+        torpedo.transform.position = new Vector3(transform.position.x + missileOffsetX, transform.position.y, torpedo.transform.position.z);
+        torpedo.SetActive(true);
+    }
+
+    /// <summary>
+    ///  Find an available inactive torpedo in the pool.
+    ///  Returns null if no torpedos are currently available.
+    /// </summary>
+    private GameObject FindTorpedo()
+    {
+        for (int i = 0; i < torpedos.Count; i++)
+        {
+            if (!torpedos[i].activeSelf)
+            {
+                return torpedos[i];
+            }
+        }
+        return null;
     }
 
     void MoveVertical()

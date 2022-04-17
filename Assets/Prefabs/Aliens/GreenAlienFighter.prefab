@@ -128,3 +128,4 @@ MonoBehaviour:
   minX: -2
   horizontalSpeed: 0.75
   maxVerticalSpeed: 1.5
+  explosionPrefab: {fileID: 6038008032709329652, guid: edcb01750df4140488d1c69b3f1a7d16, type: 3}

@@ -145,5 +145,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1cc57d68a5a73463bab3fc86b9f84da7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ammo: 3
   torpedoPrefab: {fileID: 495950246892581125, guid: 8f2c71764b9084f3cab18f7bbfb68415, type: 3}
   missileOffsetX: 0
+  explosionPrefab: {fileID: 6038008032709329652, guid: edcb01750df4140488d1c69b3f1a7d16, type: 3}

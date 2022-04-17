@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyController : MonoBehaviour
+public class EnemyController : MonoBehaviour, Explodable
 {
     /// <summary>
     ///  Minimum horizontal position of enemy before being considered
@@ -22,6 +22,11 @@ public class EnemyController : MonoBehaviour
     [SerializeField] private float maxVerticalSpeed = 1.5f;
 
     /// <summary>
+    ///  The explosion prefab to be instantiated when the enemy is destroyed.
+    /// </summary>
+    [SerializeField] private GameObject explosionPrefab;
+
+    /// <summary>
     ///  The current speed at which the enemy is moving vertically
     /// </summary>
     private float verticalSpeed;
@@ -35,6 +40,11 @@ public class EnemyController : MonoBehaviour
     void Start()
     {
         verticalSpeed = Random.Range(-verticalSpeed, +verticalSpeed);
+    }
+
+    public GameObject GetExplosionPrefab()
+    {
+        return explosionPrefab;
     }
 
     // Update is called once per frame
