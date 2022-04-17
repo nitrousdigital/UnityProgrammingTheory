@@ -1,6 +1,9 @@
 ﻿using System;
 using UnityEngine;
 
+/// <summary>
+///  Interface implemented by GameObjects that can explode
+/// </summary>
 public interface Explodable
 {
     /// <summary>

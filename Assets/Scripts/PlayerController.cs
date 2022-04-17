@@ -10,6 +10,16 @@ public class PlayerController : AbstractExplodable
     [SerializeField] private int ammo = 3;
 
     /// <summary>
+    ///  The audio clip to be played when launching a torpedo
+    /// </summary>
+    [SerializeField] private AudioClip torpedoLaunchSound;
+
+    /// <summary>
+    ///  The audio level for the sound played when launching a torpedo
+    /// </summary>
+    [SerializeField] private float torpedoLaunchVolume = 0.5f;
+
+    /// <summary>
     ///  The torpedo prefab to be launched by the player
     /// </summary>
     [SerializeField] private GameObject torpedoPrefab;
@@ -49,9 +59,12 @@ public class PlayerController : AbstractExplodable
     /// </summary>
     private List<GameObject> torpedos;
 
+    private AudioSource audioPlayer;
+
     // Start is called before the first frame update
     void Start()
     {
+        audioPlayer = GetComponent<AudioSource>();
         InitTorpedoPool();
     }
 
@@ -93,6 +106,8 @@ public class PlayerController : AbstractExplodable
 
         torpedo.transform.position = new Vector3(transform.position.x + missileOffsetX, transform.position.y, torpedo.transform.position.z);
         torpedo.SetActive(true);
+
+        audioPlayer.PlayOneShot(torpedoLaunchSound, torpedoLaunchVolume);
     }
 
     /// <summary>
