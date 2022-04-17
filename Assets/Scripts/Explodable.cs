@@ -4,7 +4,7 @@ using UnityEngine;
 public interface Explodable
 {
     /// <summary>
-    ///  Returns the explosion prefab to be instantiated when this Explodable is exploded.
+    ///  Play the explosion animation and Destroy or deactivate the Explodable
     /// </summary>
-    GameObject GetExplosionPrefab();
+    void Explode();
 }

@@ -2,26 +2,46 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerController : MonoBehaviour, Explodable
+public class PlayerController : AbstractExplodable
 {
     /// <summary>
     ///  The number of player torpedos that can exist concurrently.
     /// </summary>
     [SerializeField] private int ammo = 3;
-    [SerializeField] private GameObject torpedoPrefab;
-    [SerializeField] private float missileOffsetX = 0.5f;
 
     /// <summary>
-    ///  The explosion prefab to be instantiated when the enemy is destroyed.
+    ///  The torpedo prefab to be launched by the player
     /// </summary>
-    [SerializeField] private GameObject explosionPrefab;
+    [SerializeField] private GameObject torpedoPrefab;
 
+    /// <summary>
+    ///  Horizontal offset from the player where the torpedo should be displayed when launched
+    /// </summary>
+    [SerializeField] private float missileOffsetX = 0f;
+
+    /// <summary>
+    ///  Movement speed of the ship
+    /// </summary>
     private float speed = 1f;
 
+    /// <summary>
+    ///  Minimum vertical position for player
+    /// </summary>
     private float minY = 0.3f;
+
+    /// <summary>
+    ///  Maximum vertical position for player
+    /// </summary>
     private float maxY = 1.5f;
 
+    /// <summary>
+    ///  Minimum horizontal position for player
+    /// </summary>
     private float minX = -1.3f;
+
+    /// <summary>
+    ///  Maximum horizontal position for player
+    /// </summary>
     private float maxX = 1.3f;
 
     /// <summary>
@@ -61,16 +81,6 @@ public class PlayerController : MonoBehaviour, Explodable
         {
             FireWeapon();
         }
-    }
-
-    public GameObject GetExplosionPrefab()
-    {
-        return explosionPrefab;
-    }
-
-    public void Explode()
-    {
-        Destroy(gameObject);
     }
 
     private void FireWeapon()

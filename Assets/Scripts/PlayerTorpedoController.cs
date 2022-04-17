@@ -2,15 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerTorpedoController : MonoBehaviour, Explodable
+public class PlayerTorpedoController : AbstractExplodable
 {
     [SerializeField] private float speed = 1f;
     [SerializeField] private float maxX = 1.3f;
-
-    /// <summary>
-    ///  The explosion prefab to be instantiated when the enemy is destroyed.
-    /// </summary>
-    [SerializeField] private GameObject explosionPrefab;
 
     // Update is called once per frame
     void Update()
@@ -19,12 +14,10 @@ public class PlayerTorpedoController : MonoBehaviour, Explodable
         CheckBounds();
     }
 
-    public GameObject GetExplosionPrefab()
-    {
-        return explosionPrefab;
-    }
-
-    public void Explode()
+    /// <summary>
+    ///  Override destruction to recycle torpedos
+    /// </summary>
+    protected override void OnDestroy()
     {
         // hide the torpedo, making it available for re-use.
         gameObject.SetActive(false);
