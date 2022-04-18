@@ -32,17 +32,18 @@ public class GameManager : MonoBehaviour
     {
         player = FindObjectOfType<PlayerController>();
         score = 0;
-        UpdateAmmoHUD();
         StartLevel(1);
     }
 
-    public void UpdateAmmoHUD()
+    public void UpdateAmmoHUD(int ammo)
     {
-        int ammo = player.GetAmmoCount();
-        Debug.Log("Ammo HUD = " + ammo);
+        Debug.Log("Ammo HUD = " + ammo + " state=" + state);
         for (int i = 0; i < ammoHud.Count; i++)
         {
-            ammoHud[i].SetActive(i + 1 <= ammo);
+            if (ammoHud[i] != null)
+            {
+                ammoHud[i].SetActive(i + 1 <= ammo);
+            }
         }
     }
 

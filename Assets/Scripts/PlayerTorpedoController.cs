@@ -7,11 +7,11 @@ public class PlayerTorpedoController : AbstractExplodable
     [SerializeField] private float speed = 1f;
     [SerializeField] private float maxX = 1.3f;
 
-    private GameManager gameManager;
+    private PlayerTorpedoManager torpedoManager;
 
     private void Awake()
     {
-        gameManager = FindObjectOfType<GameManager>();
+        torpedoManager = FindObjectOfType<PlayerTorpedoManager>();
     }
 
     // Update is called once per frame
@@ -27,7 +27,7 @@ public class PlayerTorpedoController : AbstractExplodable
     public void SetActive(bool active)
     {
         gameObject.SetActive(active);
-        gameManager.UpdateAmmoHUD();
+        torpedoManager.UpdateAmmoHud();
     }
 
     /// <summary>

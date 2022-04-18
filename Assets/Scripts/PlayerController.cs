@@ -4,10 +4,6 @@ using UnityEngine;
 
 public class PlayerController : AbstractExplodable
 {
-    /// <summary>
-    ///  The number of player torpedos that can exist concurrently.
-    /// </summary>
-    [SerializeField] private int ammo = 3;
 
     /// <summary>
     ///  The audio clip to be played when launching a torpedo
@@ -18,11 +14,6 @@ public class PlayerController : AbstractExplodable
     ///  The audio level for the sound played when launching a torpedo
     /// </summary>
     [SerializeField] private float torpedoLaunchVolume = 0.5f;
-
-    /// <summary>
-    ///  The torpedo prefab to be launched by the player
-    /// </summary>
-    [SerializeField] private GameObject torpedoPrefab;
 
     /// <summary>
     ///  Horizontal offset from the player where the torpedo should be displayed when launched
@@ -54,32 +45,17 @@ public class PlayerController : AbstractExplodable
     /// </summary>
     private float maxX = 1.3f;
 
-    /// <summary>
-    ///  Pool of reusable torpedos
-    /// </summary>
-    private List<GameObject> torpedos;
-
     private AudioSource audioPlayer;
+
+    private GameManager gameManager;
+    private PlayerTorpedoManager torpedoManager;
 
     // Start is called before the first frame update
     void Start()
     {
+        torpedoManager = FindObjectOfType<PlayerTorpedoManager>();
+        gameManager = FindObjectOfType<GameManager>();
         audioPlayer = GetComponent<AudioSource>();
-        InitTorpedoPool();
-    }
-
-    /// <summary>
-    ///  Initialize the pool of reusable torpedos
-    /// </summary>
-    private void InitTorpedoPool()
-    {
-        torpedos = new List<GameObject>();
-        for (int i = 0; i < ammo; i++)
-        {
-            GameObject torpedo = Instantiate(torpedoPrefab);
-            torpedo.SetActive(false);
-            torpedos.Add(torpedo);
-        }
     }
 
     // Update is called once per frame
@@ -101,51 +77,12 @@ public class PlayerController : AbstractExplodable
     /// </summary>
     private void FireWeapon()
     {
-        GameObject torpedo = FindTorpedo();
-        if (torpedo == null)
+        GameObject torpedo = torpedoManager.FireTorpedo(transform.position.x + missileOffsetX, transform.position.y);
+        if (torpedo != null)
         {
-            return;
+            audioPlayer.PlayOneShot(torpedoLaunchSound, torpedoLaunchVolume);
         }
-
-        torpedo.transform.position = new Vector3(transform.position.x + missileOffsetX, transform.position.y, torpedo.transform.position.z);
-        PlayerTorpedoController torpedoController = torpedo.GetComponent<PlayerTorpedoController>();
-        torpedoController.SetActive(true);
-
-        audioPlayer.PlayOneShot(torpedoLaunchSound, torpedoLaunchVolume);
     }
-
-    /// <summary>
-    ///  Returns the current number of available torpedos to be launched.
-    /// </summary>
-    public int GetAmmoCount()
-    {
-        int ammo = 0;
-        for (int i = 0; i < torpedos.Count; i++)
-        {
-            if (!torpedos[i].activeSelf)
-            {
-                ammo++;
-            }
-        }
-        return ammo;
-    }
-
-    /// <summary>
-    ///  Find an available inactive torpedo in the pool.
-    ///  Returns null if no torpedos are currently available.
-    /// </summary>
-    private GameObject FindTorpedo()
-    {
-        for (int i = 0; i < torpedos.Count; i++)
-        {
-            if (!torpedos[i].activeSelf)
-            {
-                return torpedos[i];
-            }
-        }
-        return null;
-    }
-
 
     /// <summary>
     ///  Handle vertical movement
