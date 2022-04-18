@@ -108,9 +108,26 @@ public class PlayerController : AbstractExplodable
         }
 
         torpedo.transform.position = new Vector3(transform.position.x + missileOffsetX, transform.position.y, torpedo.transform.position.z);
-        torpedo.SetActive(true);
+        PlayerTorpedoController torpedoController = torpedo.GetComponent<PlayerTorpedoController>();
+        torpedoController.SetActive(true);
 
         audioPlayer.PlayOneShot(torpedoLaunchSound, torpedoLaunchVolume);
+    }
+
+    /// <summary>
+    ///  Returns the current number of available torpedos to be launched.
+    /// </summary>
+    public int GetAmmoCount()
+    {
+        int ammo = 0;
+        for (int i = 0; i < torpedos.Count; i++)
+        {
+            if (!torpedos[i].activeSelf)
+            {
+                ammo++;
+            }
+        }
+        return ammo;
     }
 
     /// <summary>

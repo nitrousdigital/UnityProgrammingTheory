@@ -129,6 +129,7 @@ MonoBehaviour:
   explosionPrefab: {fileID: 6038008032709329652, guid: edcb01750df4140488d1c69b3f1a7d16, type: 3}
   explosionSound: {fileID: 8300000, guid: c7d7929f054b24df6b74e603143cce9e, type: 3}
   explosionSoundVolume: 3
+  scoreAward: 10
   minX: -2
   horizontalSpeed: 0.75
   maxVerticalSpeed: 1.5

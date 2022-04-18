@@ -17,7 +17,7 @@ public class EnemySpawnManager : MonoBehaviour
     /// <summary>
     ///  Maximum spawn vertical position
     /// </summary>
-    [SerializeField] private float maxSpawnY = 1.5f;
+    [SerializeField] private float maxSpawnY = 1.3f;
 
     /// <summary>
     ///  Horizontal spawn position

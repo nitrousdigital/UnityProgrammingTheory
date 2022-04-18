@@ -7,6 +7,13 @@ public class PlayerTorpedoController : AbstractExplodable
     [SerializeField] private float speed = 1f;
     [SerializeField] private float maxX = 1.3f;
 
+    private GameManager gameManager;
+
+    private void Awake()
+    {
+        gameManager = FindObjectOfType<GameManager>();
+    }
+
     // Update is called once per frame
     void Update()
     {
@@ -15,12 +22,21 @@ public class PlayerTorpedoController : AbstractExplodable
     }
 
     /// <summary>
+    ///  Activate or deactivate this torpedo and update the ammo HUD
+    /// </summary>
+    public void SetActive(bool active)
+    {
+        gameObject.SetActive(active);
+        gameManager.UpdateAmmoHUD();
+    }
+
+    /// <summary>
     ///  Override destruction to recycle torpedos
     /// </summary>
     protected override void OnDestroy()
     {
         // hide the torpedo, making it available for re-use.
-        gameObject.SetActive(false);
+        SetActive(false);
     }
 
     /// <summary>
@@ -31,7 +47,7 @@ public class PlayerTorpedoController : AbstractExplodable
         if (transform.position.x > maxX)
         {
             // hide the torpedo, making it available for re-use.
-            gameObject.SetActive(false);
+            SetActive(false);
         }
     }
 

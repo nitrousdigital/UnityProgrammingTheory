@@ -5,11 +5,15 @@ using UnityEngine;
 public class EnemyController : AbstractExplodable
 {
     /// <summary>
+    ///  The score to be awarded for destroying this enemy
+    /// </summary>
+    [SerializeField] private int scoreAward = 5;
+
+    /// <summary>
     ///  Minimum horizontal position of enemy before being considered
     ///  out of bounds and eligible for disposal
     /// </summary>
     [SerializeField] private float minX = -2f;
-
 
     /// <summary>
     ///  Horizontal speed
@@ -32,6 +36,14 @@ public class EnemyController : AbstractExplodable
     private float verticalSpeedChangeRate = 0.1f;
 
     private GameManager gameManager;
+
+    /// <summary>
+    ///  The score to be awarded to the player for destroying this enemy
+    /// </summary>
+    public int GetScoreAward()
+    {
+        return scoreAward;
+    }
 
     // Start is called before the first frame update
     void Start()
