@@ -33,7 +33,7 @@ public class PlayerTorpedoController : AbstractExplodable
     /// <summary>
     ///  Override destruction to recycle torpedos
     /// </summary>
-    protected override void OnDestroy()
+    protected override void OnExploded()
     {
         // hide the torpedo, making it available for re-use.
         SetActive(false);

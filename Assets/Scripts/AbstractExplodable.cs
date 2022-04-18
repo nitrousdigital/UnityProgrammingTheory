@@ -37,7 +37,7 @@ public abstract class AbstractExplodable : MonoBehaviour, Explodable
         }
 
         // dispose of (or recycle) the explodable game object
-        OnDestroy();
+        OnExploded();
     }
 
     /// <summary>
@@ -46,7 +46,7 @@ public abstract class AbstractExplodable : MonoBehaviour, Explodable
     ///  If in a Pool, this method should be overridden
     ///  to call gameObject.SetActive(false) instead.
     /// </summary>
-    protected virtual void OnDestroy() {
+    protected virtual void OnExploded() {
         Destroy(gameObject);
     }
 }
