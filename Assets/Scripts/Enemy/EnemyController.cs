@@ -10,6 +10,11 @@ public class EnemyController : ExplodableController
     [SerializeField] private bool torpedosEquipped = false;
 
     /// <summary>
+    ///  Speed of torpedos launched by this enemy
+    /// </summary>
+    [SerializeField] private float topedoSpeed = 1f;
+
+    /// <summary>
     ///  The initial delay (seconds) before launching the first torpedo.
     /// </summary>
     [SerializeField] private float initialShootingDelay = 1f;
@@ -86,7 +91,8 @@ public class EnemyController : ExplodableController
         {
             torpedoManager.FireTorpedo(
                 gameObject.transform.position.x + hTorpedoOffset,
-                gameObject.transform.position.y + vTorpedoOffset);
+                gameObject.transform.position.y + vTorpedoOffset,
+                topedoSpeed);
             ScheduleNextTorpedoLaunch();
         }
     }

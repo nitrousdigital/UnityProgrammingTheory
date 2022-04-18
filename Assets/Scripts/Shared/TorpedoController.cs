@@ -12,6 +12,14 @@ public class TorpedoController : ExplodableController
     [SerializeField] private float maxX = 1.3f;
     [SerializeField] private float minX = -2.2f;
 
+    /// <summary>
+    ///  Set the speed of the torpedo
+    /// </summary>
+    public void SetSpeed(float speed)
+    {
+        this.speed = speed;
+    }
+
     // Update is called once per frame
     void Update()
     {

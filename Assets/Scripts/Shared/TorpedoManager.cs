@@ -45,7 +45,8 @@ public class TorpedoManager : MonoBehaviour
     }
 
     /// <summary>
-    ///  Activate a torpedo, update the HUD and return the activated torpedo.
+    ///  Launch a torpedo, if one is available.
+    ///  Returns the torpedo that is being launched.
     ///  Returns null if no inactive torpedos are found.
     /// </summary>
     public GameObject FireTorpedo(float x, float y)
@@ -58,6 +59,21 @@ public class TorpedoManager : MonoBehaviour
         torpedo.transform.position = new Vector3(x, y, torpedo.transform.position.z);
         TorpedoController torpedoController = torpedo.GetComponent<TorpedoController>();
         torpedoController.SetActive(true);
+        return torpedo;
+    }
+
+    /// <summary>
+    ///  Launch a torpedo, if one is available and set its speed.
+    ///  Returns the torpedo that is being launched.
+    ///  Returns null if no inactive torpedos are found.
+    /// </summary>
+    public GameObject FireTorpedo(float x, float y, float speed)
+    {
+        GameObject torpedo = FireTorpedo(x, y);
+        if (torpedo != null)
+        {
+            torpedo.GetComponent<TorpedoController>().SetSpeed(speed);
+        }
         return torpedo;
     }
 

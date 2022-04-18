@@ -226,6 +226,7 @@ MonoBehaviour:
   explosionSound: {fileID: 8300000, guid: c7d7929f054b24df6b74e603143cce9e, type: 3}
   explosionSoundVolume: 1
   torpedosEquipped: 1
+  topedoSpeed: 1.5
   initialShootingDelay: 1
   minShootingInterval: 0.25
   maxShootingInterval: 0.5

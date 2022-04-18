@@ -2,6 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+///  Controls torpedos that are launched by enemies.
+///  Detects collisions with the player and player torpedos.
+/// </summary>
 public class EnemyTorpedoController : TorpedoController
 {
     // score awarded for destroying this torpedo
