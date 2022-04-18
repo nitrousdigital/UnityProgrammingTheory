@@ -56,7 +56,7 @@ public class TorpedoManager : MonoBehaviour
             return null;
         }
         torpedo.transform.position = new Vector3(x, y, torpedo.transform.position.z);
-        PlayerTorpedoController torpedoController = torpedo.GetComponent<PlayerTorpedoController>();
+        TorpedoController torpedoController = torpedo.GetComponent<TorpedoController>();
         torpedoController.SetActive(true);
         return torpedo;
     }

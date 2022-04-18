@@ -5,6 +5,36 @@ using UnityEngine;
 public class EnemyController : ExplodableController
 {
     /// <summary>
+    ///  True if this enemy launches torpedos
+    /// </summary>
+    [SerializeField] private bool torpedosEquipped = false;
+
+    /// <summary>
+    ///  The initial delay (seconds) before launching the first torpedo.
+    /// </summary>
+    [SerializeField] private float initialShootingDelay = 1f;
+
+    /// <summary>
+    ///  Minimum interval (seconds) between launching torpedos.
+    /// </summary>
+    [SerializeField] private float minShootingInterval = 1f;
+
+    /// <summary>
+    ///  Maximum interval (seconds) between launching torpedos.
+    /// </summary>
+    [SerializeField] private float maxShootingInterval = 2f;
+
+    /// <summary>
+    ///  Horizontal offset from enemy position where torpedo is to be instantiated
+    /// </summary>
+    [SerializeField] private float hTorpedoOffset = 0f;
+
+    /// <summary>
+    ///  Vertical offset from enemy position where torpedo is to be instantiated
+    /// </summary>
+    [SerializeField] private float vTorpedoOffset = 0f;
+
+    /// <summary>
     ///  The score to be awarded for destroying this enemy
     /// </summary>
     [SerializeField] private int scoreAward = 5;
@@ -20,12 +50,53 @@ public class EnemyController : ExplodableController
     /// </summary>
     [SerializeField] private float horizontalSpeed = 1.5f;
 
+    /// <summary>
+    ///  The TorpedoManager to be used to launch torpedos
+    ///  from this enemy.
+    /// </summary>
+    private TorpedoManager torpedoManager;
+
     private GameManager gameManager;
 
     // Start is called before the first frame update
     public void Start()
     {
         gameManager = FindObjectOfType<GameManager>();
+        if (torpedosEquipped)
+        {
+            torpedoManager = GameObject.Find("EnemyTorpedoManager").GetComponent<TorpedoManager>();
+            ScheduleTorpedoLaunch(initialShootingDelay);
+        }
+    }
+
+    /// <summary>
+    ///  Schedule launching of a torpedo.
+    /// </summary>
+    private void ScheduleTorpedoLaunch(float delay)
+    {
+        Invoke("LaunchTorpedo", delay);
+    }
+
+    /// <summary>
+    ///  Launch a torpedo and schedule the next launch
+    /// </summary>
+    private void LaunchTorpedo()
+    {
+        if (gameObject != null && gameObject.activeSelf)
+        {
+            torpedoManager.FireTorpedo(
+                gameObject.transform.position.x + hTorpedoOffset,
+                gameObject.transform.position.y + vTorpedoOffset);
+            ScheduleNextTorpedoLaunch();
+        }
+    }
+
+    /// <summary>
+    ///  Schedule the next torpedo launch
+    /// </summary>
+    private void ScheduleNextTorpedoLaunch()
+    {
+        ScheduleTorpedoLaunch(Random.Range(minShootingInterval, maxShootingInterval));
     }
 
     // Update is called once per frame
