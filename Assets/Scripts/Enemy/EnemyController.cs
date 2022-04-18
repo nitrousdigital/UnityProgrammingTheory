@@ -46,14 +46,14 @@ public class EnemyController : AbstractExplodable
     }
 
     // Start is called before the first frame update
-    void Start()
+    public void Start()
     {
         gameManager = FindObjectOfType<GameManager>();
         verticalSpeed = Random.Range(-verticalSpeed, +verticalSpeed);
     }
 
     // Update is called once per frame
-    void Update()
+    public void Update()
     {
         MoveVertical();
         MoveHorizontal();
@@ -63,7 +63,7 @@ public class EnemyController : AbstractExplodable
     /// <summary>
     ///  Move the enemy forward
     /// </summary>
-    void MoveHorizontal()
+    protected virtual void MoveHorizontal()
     {
         transform.Translate(Vector3.forward * horizontalSpeed * Time.deltaTime);
     }
@@ -71,10 +71,11 @@ public class EnemyController : AbstractExplodable
     /// <summary>
     ///  Move the enemy up/down in a waveform motion
     /// </summary>
-    void MoveVertical()
+    protected virtual void MoveVertical()
     {
         // vertical speed follows a waveform
         // from +maxVerticalSpeed to -maxVerticalSpeed
+        /*
         verticalSpeed += verticalSpeedChangeRate;
         if (verticalSpeed > maxVerticalSpeed)
         {
@@ -88,9 +89,10 @@ public class EnemyController : AbstractExplodable
         }
 
         transform.Translate(Vector3.up * verticalSpeed * Time.deltaTime);
+        */
     }
 
-    private void OnTriggerEnter(Collider collision)
+    protected void OnTriggerEnter(Collider collision)
     {
         if (collision.CompareTag("Player"))
         {
@@ -110,7 +112,7 @@ public class EnemyController : AbstractExplodable
     ///  Check whether this enemy has flown outside of the visible bounds of the screen
     ///  and if so, it should be disposed.
     /// </summary>
-    void CheckOutOfBounds()
+    protected void CheckOutOfBounds()
     {
         if (transform.position.x < minX)
         {
