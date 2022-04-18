@@ -31,9 +31,12 @@ public class EnemyController : AbstractExplodable
     /// </summary>
     private float verticalSpeedChangeRate = 0.1f;
 
+    private GameManager gameManager;
+
     // Start is called before the first frame update
     void Start()
     {
+        gameManager = FindObjectOfType<GameManager>();
         verticalSpeed = Random.Range(-verticalSpeed, +verticalSpeed);
     }
 
@@ -79,13 +82,13 @@ public class EnemyController : AbstractExplodable
     {
         if (collision.CompareTag("Player"))
         {
-            GameManager.instance.OnPlayerCrashedIntoEnemyShip(
+            gameManager.OnPlayerCrashedIntoEnemyShip(
                 collision.gameObject,
                 gameObject);
         }
         else if (collision.CompareTag("PlayerMissile"))
         {
-            GameManager.instance.OnEnemyHitByMissile(
+            gameManager.OnEnemyHitByMissile(
                 collision.gameObject,
                 gameObject);
         }

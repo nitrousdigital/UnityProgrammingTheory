@@ -1,22 +1,59 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
-
-    public static GameManager instance;
-
-    private void Awake()
+    public enum GameState
     {
-        // singleton GameManager
-        if (instance == null)
+        TITLE_SCREEN,
+        PLAYING,
+        GAME_OVER,
+    }
+
+    private GameState state;
+
+    private void Start()
+    {
+        state = GameState.PLAYING;
+        ShowUiForState();
+    }
+
+    public bool IsPlaying()
+    {
+        return state == GameState.PLAYING;
+    }
+
+
+
+    private void ScheduleGameOver()
+    {
+        if (state != GameState.GAME_OVER)
         {
-            instance = this;
+            state = GameState.GAME_OVER;
+            ShowUiForState();
+            Invoke("ShowTitleScreen", 3);
         }
-        else
+    }
+
+    /// <summary>
+    ///  Load the title scene
+    /// </summary>
+    private void ShowTitleScreen()
+    {
+        SceneManager.LoadScene(0);
+    }
+
+    /// <summary>
+    ///  Toggle visibility of UI components based upon the current GameState
+    /// </summary>
+    private void ShowUiForState()
+    {
+        GameObject gameOverUi = GameObject.FindGameObjectWithTag("GameOver");
+        if (gameOverUi != null)
         {
-            Destroy(this);
+            gameOverUi.SetActive(state == GameState.GAME_OVER);
         }
     }
 
@@ -28,6 +65,8 @@ public class GameManager : MonoBehaviour
 
         EnemyController enemyController = enemy.GetComponent<EnemyController>();
         enemyController.Explode();
+
+        ScheduleGameOver();
     }
 
     public void OnEnemyHitByMissile(GameObject playerTorpedo, GameObject enemy)

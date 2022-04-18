@@ -6,6 +6,7 @@ TagManager:
   tags:
   - PlayerMissile
   - EnemyShip
+  - GameOver
   layers:
   - Default
   - TransparentFX
