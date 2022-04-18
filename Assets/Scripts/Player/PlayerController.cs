@@ -48,9 +48,12 @@ public class PlayerController : ExplodableController
     private AudioSource audioPlayer;
     private PlayerTorpedoManager torpedoManager;
 
+    private GameManager gameManager;
+
     // Start is called before the first frame update
     void Start()
     {
+        gameManager = FindObjectOfType<GameManager>();
         torpedoManager = FindObjectOfType<PlayerTorpedoManager>();
         audioPlayer = GetComponent<AudioSource>();
     }
@@ -64,6 +67,17 @@ public class PlayerController : ExplodableController
         if (Input.GetKeyDown(KeyCode.Space))
         {
             FireWeapon();
+        }
+    }
+
+    /// <summary>
+    ///  Handle collisions with the player or player torpedos
+    /// </summary>
+    protected void OnTriggerEnter(Collider collision)
+    {
+        if (collision.CompareTag("EnemyMissile"))
+        {
+            gameManager.OnPlayerHitByEnemyMissile(gameObject, collision.gameObject);
         }
     }
 

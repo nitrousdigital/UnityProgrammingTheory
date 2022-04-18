@@ -100,6 +100,18 @@ public class GameManager : MonoBehaviour
         levelAnnounceCanvas.SetActive(state == GameState.LEVEL_ANNOUNCE);
     }
 
+    public void OnPlayerHitByEnemyMissile(GameObject player, GameObject enemyMissile)
+    {
+        Debug.Log("Player hit by missile");
+        PlayerController playerController = player.GetComponent<PlayerController>();
+        playerController.Explode();
+
+        ExplodableController missile = enemyMissile.GetComponent<ExplodableController>();
+        missile.Explode();
+
+        ScheduleGameOver();
+    }
+
     public void OnPlayerCrashedIntoEnemyShip(GameObject player, GameObject enemy)
     {
         Debug.Log("Player crashed into enemy");
