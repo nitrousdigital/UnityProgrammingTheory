@@ -129,9 +129,15 @@ MonoBehaviour:
   explosionPrefab: {fileID: 6038008032709329652, guid: edcb01750df4140488d1c69b3f1a7d16, type: 3}
   explosionSound: {fileID: 8300000, guid: c7d7929f054b24df6b74e603143cce9e, type: 3}
   explosionSoundVolume: 3
+  torpedosEquipped: 1
+  initialShootingDelay: 1
+  minShootingInterval: 0.5
+  maxShootingInterval: 1
+  hTorpedoOffset: 0
+  vTorpedoOffset: 0
+  scoreAward: 5
   minX: -2
   horizontalSpeed: 0.3
-  maxVerticalSpeed: 1
 --- !u!82 &7236927265933851411
 AudioSource:
   m_ObjectHideFlags: 0

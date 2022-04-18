@@ -137,6 +137,19 @@ public class GameManager : MonoBehaviour
         AwardScore(enemyController.GetScoreAward());
     }
 
+    public void OnEnemyMissileDestroyed(GameObject playerTorpedo, GameObject enemyTorpedo)
+    {
+        Debug.Log("Player destroyed an enemy torpedo");
+
+        PlayerTorpedoController torpedoController = playerTorpedo.GetComponent<PlayerTorpedoController>();
+        torpedoController.Explode();
+
+        EnemyTorpedoController enemyTorpedoController = enemyTorpedo.GetComponent<EnemyTorpedoController>();
+        enemyTorpedoController.Explode();
+
+        AwardScore(enemyTorpedoController.GetScoreAward());
+    }
+
     private void AwardScore(int score)
     {
         this.score += score;

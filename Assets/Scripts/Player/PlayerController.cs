@@ -71,17 +71,6 @@ public class PlayerController : ExplodableController
     }
 
     /// <summary>
-    ///  Handle collisions with the player or player torpedos
-    /// </summary>
-    protected void OnTriggerEnter(Collider collision)
-    {
-        if (collision.CompareTag("EnemyMissile"))
-        {
-            gameManager.OnPlayerHitByEnemyMissile(gameObject, collision.gameObject);
-        }
-    }
-
-    /// <summary>
     ///  Ensure the player does not move out of bounds
     /// </summary>
     private void ClampPosition()
