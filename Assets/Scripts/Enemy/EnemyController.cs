@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyController : AbstractExplodable
+public class EnemyController : ExplodableController
 {
     /// <summary>
     ///  The score to be awarded for destroying this enemy
@@ -20,36 +20,12 @@ public class EnemyController : AbstractExplodable
     /// </summary>
     [SerializeField] private float horizontalSpeed = 1.5f;
 
-    /// <summary>
-    ///  The maximum vertical speed
-    /// </summary>
-    [SerializeField] private float maxVerticalSpeed = 1.5f;
-
-    /// <summary>
-    ///  The current speed at which the enemy is moving vertically
-    /// </summary>
-    private float verticalSpeed;
-
-    /// <summary>
-    ///  The current rate at which the vertical speed is changing
-    /// </summary>
-    private float verticalSpeedChangeRate = 0.1f;
-
     private GameManager gameManager;
-
-    /// <summary>
-    ///  The score to be awarded to the player for destroying this enemy
-    /// </summary>
-    public int GetScoreAward()
-    {
-        return scoreAward;
-    }
 
     // Start is called before the first frame update
     public void Start()
     {
         gameManager = FindObjectOfType<GameManager>();
-        verticalSpeed = Random.Range(-verticalSpeed, +verticalSpeed);
     }
 
     // Update is called once per frame
@@ -61,6 +37,14 @@ public class EnemyController : AbstractExplodable
     }
 
     /// <summary>
+    ///  The score to be awarded to the player for destroying this enemy
+    /// </summary>
+    public int GetScoreAward()
+    {
+        return scoreAward;
+    }
+
+    /// <summary>
     ///  Move the enemy forward
     /// </summary>
     protected virtual void MoveHorizontal()
@@ -69,29 +53,15 @@ public class EnemyController : AbstractExplodable
     }
 
     /// <summary>
-    ///  Move the enemy up/down in a waveform motion
+    ///  Hook for sub-classes to move the enemy along the vertical axis
     /// </summary>
     protected virtual void MoveVertical()
     {
-        // vertical speed follows a waveform
-        // from +maxVerticalSpeed to -maxVerticalSpeed
-        /*
-        verticalSpeed += verticalSpeedChangeRate;
-        if (verticalSpeed > maxVerticalSpeed)
-        {
-            verticalSpeed = maxVerticalSpeed;
-            verticalSpeedChangeRate = -verticalSpeedChangeRate;
-        }
-        else if (verticalSpeed < -maxVerticalSpeed)
-        {
-            verticalSpeed = -maxVerticalSpeed;
-            verticalSpeedChangeRate = -verticalSpeedChangeRate;
-        }
-
-        transform.Translate(Vector3.up * verticalSpeed * Time.deltaTime);
-        */
     }
 
+    /// <summary>
+    ///  Handle collisions with the player or player torpedos
+    /// </summary>
     protected void OnTriggerEnter(Collider collision)
     {
         if (collision.CompareTag("Player"))

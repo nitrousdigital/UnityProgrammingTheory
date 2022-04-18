@@ -7,7 +7,7 @@ using UnityEngine;
 /// <summary>
 ///  Manages a pool of torpedos that can be launched.
 /// </summary>
-public abstract class TorpedoManager : MonoBehaviour
+public class TorpedoManager : MonoBehaviour
 {
     /// <summary>
     ///  The torpedo prefab to be launched by the player
@@ -24,6 +24,12 @@ public abstract class TorpedoManager : MonoBehaviour
     /// </summary>
     private List<GameObject> torpedos;
 
+    // Start is called before the first frame update
+    public void Start()
+    {
+        InitTorpedoPool();
+    }
+
     /// <summary>
     ///  Initialize the pool of reusable torpedos
     /// </summary>
@@ -36,12 +42,6 @@ public abstract class TorpedoManager : MonoBehaviour
             torpedos.Add(torpedo);
             torpedo.SetActive(false);
         }
-    }
-
-    // Start is called before the first frame update
-    public void Start()
-    {
-        InitTorpedoPool();
     }
 
     /// <summary>

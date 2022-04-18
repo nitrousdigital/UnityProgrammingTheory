@@ -4,9 +4,9 @@ using UnityEngine;
 
 /// <summary>
 ///  Base class for game object controllers that can play
-///  and explode animation.
+///  an explode animation and sound.
 /// </summary>
-public abstract class AbstractExplodable : MonoBehaviour, Explodable
+public class ExplodableController : MonoBehaviour, Explodable
 {
     /// <summary>
     ///  The explosion prefab to be instantiated when the enemy is destroyed.
@@ -25,7 +25,6 @@ public abstract class AbstractExplodable : MonoBehaviour, Explodable
 
     public void Explode()
     {
-
         // play the explosion effect
         GameObject explosion = Instantiate(explosionPrefab);
         explosion.transform.position = gameObject.transform.position;

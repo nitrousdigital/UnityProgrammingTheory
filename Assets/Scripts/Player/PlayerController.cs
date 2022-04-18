@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerController : AbstractExplodable
+public class PlayerController : ExplodableController
 {
 
     /// <summary>
@@ -46,30 +46,43 @@ public class PlayerController : AbstractExplodable
     private float maxX = 1.3f;
 
     private AudioSource audioPlayer;
-
-    private GameManager gameManager;
     private PlayerTorpedoManager torpedoManager;
 
     // Start is called before the first frame update
     void Start()
     {
         torpedoManager = FindObjectOfType<PlayerTorpedoManager>();
-        gameManager = FindObjectOfType<GameManager>();
         audioPlayer = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        MoveVertical();
-        MoveHorizontal();
-        ClampVerticalPosition();
-        ClampHorizontalPosition();
+        HandlePlayerMovement();
+        ClampPosition();
 
         if (Input.GetKeyDown(KeyCode.Space))
         {
             FireWeapon();
         }
+    }
+
+    /// <summary>
+    ///  Ensure the player does not move out of bounds
+    /// </summary>
+    private void ClampPosition()
+    {
+        ClampVerticalPosition();
+        ClampHorizontalPosition();
+    }
+
+    /// <summary>
+    ///  Move the player based on user input
+    /// </summary>
+    private void HandlePlayerMovement()
+    {
+        MoveVertical();
+        MoveHorizontal();
     }
 
     /// <summary>
