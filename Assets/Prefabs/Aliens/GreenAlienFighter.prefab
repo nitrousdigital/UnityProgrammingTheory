@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 4150099700594546162}
   - component: {fileID: -3480348641744421706}
   - component: {fileID: -2443403054637860088}
-  - component: {fileID: 7657000399629572929}
+  - component: {fileID: -3360256939462836126}
   m_Layer: 0
   m_Name: GreenAlienFighter
   m_TagString: EnemyShip
@@ -210,7 +210,7 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &7657000399629572929
+--- !u!114 &-3360256939462836126
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -219,7 +219,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 2611940412812676561}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fda3ae407ea7f43d3a800efda6ce6129, type: 3}
+  m_Script: {fileID: 11500000, guid: 7d049998c02e9462b92d10a92d6e573b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   explosionPrefab: {fileID: 6038008032709329652, guid: edcb01750df4140488d1c69b3f1a7d16, type: 3}

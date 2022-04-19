@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SinWaveEnemyController : EnemyController
+public class SineWaveEnemyController : EnemyController
 {
     /// <summary>
     ///  The size of the sin wave (distance in pixels from the vertical origin)
