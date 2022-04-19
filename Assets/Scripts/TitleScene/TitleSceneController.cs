@@ -20,29 +20,11 @@ public class TitleSceneController : MonoBehaviour
     [SerializeField] private GameObject enemy;
     [SerializeField] private GameObject player;
 
-    /// <summary>
-    ///  The sine wave degree in radians
-    ///  Repeatedly Cycles between 0 and 2PI at a rate of cycleSpeed
-    /// </summary>
-    private float playerSinRad;
-    /// <summary>
-    ///  The current vertical offset from the origin where the enemy was instantiated
-    /// </summary>
-    private float playerVerticalOffset;
-
-    /// <summary>
-    ///  The initial vertical position about which we will be forming a sin wave
-    /// </summary>
-    private float playerOriginY;
-
-    private static float PI2 = Mathf.PI * 2f;
+    private SineCycle ySineCycle;
 
     public void Start()
     {
-        playerOriginY = player.transform.position.y;
-        playerVerticalOffset = 0f;
-        playerSinRad = 0f;
-
+        ySineCycle = new SineCycle(playerSinWaveMagnitude, playerCycleSpeed, player);
         LaunchTorpedo();
     }
 
@@ -53,15 +35,7 @@ public class TitleSceneController : MonoBehaviour
 
     private void MovePlayer()
     {
-        playerSinRad += playerCycleSpeed * Time.deltaTime;
-        playerSinRad %= PI2;
-        playerVerticalOffset = playerSinWaveMagnitude * Mathf.Sin(playerSinRad);
-        float y = playerOriginY + playerVerticalOffset;
-        Vector3 position = new Vector3(
-            player.transform.position.x,
-            y,
-            player.transform.position.z);
-        player.transform.position = position;
+        ySineCycle.Update();
     }
 
     public void LaunchTorpedo()
