@@ -227,13 +227,15 @@ MonoBehaviour:
   explosionSoundVolume: 1
   torpedosEquipped: 1
   topedoSpeed: 1.5
-  initialShootingDelay: 1
-  minShootingInterval: 0.25
-  maxShootingInterval: 0.5
   hTorpedoOffset: 0
   vTorpedoOffset: 0
   scoreAward: 10
   minX: -2
+  invincibleX: 1.9
   horizontalSpeed: 1
+  increaseSpeedWithLevel: 0
+  decreaseTorpedoIntervalWithLevel: 0
+  minShootingInterval: 1
+  maxShootingInterval: 3
   sinWaveMagnitude: 0.3
   cycleSpeed: 5

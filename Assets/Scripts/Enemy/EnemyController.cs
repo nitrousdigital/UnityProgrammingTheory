@@ -15,21 +15,6 @@ public class EnemyController : ExplodableController
     [SerializeField] private float topedoSpeed = 1f;
 
     /// <summary>
-    ///  The initial delay (seconds) before launching the first torpedo.
-    /// </summary>
-    [SerializeField] private float initialShootingDelay = 1f;
-
-    /// <summary>
-    ///  Minimum interval (seconds) between launching torpedos.
-    /// </summary>
-    [SerializeField] private float minShootingInterval = 1f;
-
-    /// <summary>
-    ///  Maximum interval (seconds) between launching torpedos.
-    /// </summary>
-    [SerializeField] private float maxShootingInterval = 2f;
-
-    /// <summary>
     ///  Horizontal offset from enemy position where torpedo is to be instantiated
     /// </summary>
     [SerializeField] private float hTorpedoOffset = 0f;
@@ -51,9 +36,42 @@ public class EnemyController : ExplodableController
     [SerializeField] private float minX = -2f;
 
     /// <summary>
+    ///  Minimum horizontal coordinate where enemies are invincible
+    ///  to ensure enemies are not destroyed before they fly into the visible
+    ///  region of the screen
+    /// </summary>
+    [SerializeField] private float invincibleX = 1.9f;
+
+    /// <summary>
     ///  Horizontal speed
     /// </summary>
     [SerializeField] private float horizontalSpeed = 1.5f;
+
+    /// <summary>
+    ///  True to increase the speed of the enemy and its torpedos as the level increases
+    /// </summary>
+    [SerializeField] private bool increaseSpeedWithLevel = true;
+
+    /// <summary>
+    ///  True to decrease time between torpedos as the level increases
+    /// </summary>
+    [SerializeField] private bool decreaseTorpedoIntervalWithLevel = true;
+
+    /// <summary>
+    ///  Minimum interval (seconds) between launching torpedos.
+    /// </summary>
+    [SerializeField] private float minShootingInterval = 3f;
+
+    /// <summary>
+    ///  Maximum interval (seconds) between launching torpedos.
+    /// </summary>
+    [SerializeField] private float maxShootingInterval = 4f;
+
+    /// <summary>
+    ///  The initial delay (seconds) before launching the first torpedo.
+    /// </summary>
+    private float initialShootingDelay = 1f;
+
 
     /// <summary>
     ///  The TorpedoManager to be used to launch torpedos
@@ -67,6 +85,25 @@ public class EnemyController : ExplodableController
     public void Start()
     {
         gameManager = FindObjectOfType<GameManager>();
+
+        // increase speed of enemy and missile with level
+        int level = gameManager.GetLevel();
+        if (level > 1)
+        {
+            if (decreaseTorpedoIntervalWithLevel)
+            {
+                minShootingInterval = Mathf.Max(1f, 3f - level);
+                maxShootingInterval = Mathf.Max(minShootingInterval, 5f - level);
+            }
+
+            if (increaseSpeedWithLevel)
+            {
+                float increase = 1f + (0.1f * level);
+                horizontalSpeed *= increase;
+                topedoSpeed *= increase;
+            }
+        }
+
         if (torpedosEquipped)
         {
             torpedoManager = GameObject.Find("EnemyTorpedoManager").GetComponent<TorpedoManager>();
@@ -141,6 +178,12 @@ public class EnemyController : ExplodableController
     /// </summary>
     protected void OnTriggerEnter(Collider collision)
     {
+        // ignore off-screen collisions.
+        if (gameObject.transform.position.x >= invincibleX)
+        {
+            return;
+        }
+
         if (collision.CompareTag("Player"))
         {
             gameManager.OnPlayerCrashedIntoEnemyShip(

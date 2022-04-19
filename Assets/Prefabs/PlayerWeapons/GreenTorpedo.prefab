@@ -100,7 +100,7 @@ MonoBehaviour:
   explosionSound: {fileID: 0}
   explosionSoundVolume: 1
   speed: 1
-  maxX: 1.3
+  maxX: 1.9
   minX: -2.2
 --- !u!54 &-7723661303626256663
 Rigidbody:

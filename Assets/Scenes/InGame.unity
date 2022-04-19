@@ -226,6 +226,7 @@ MonoBehaviour:
   gameOverCanvas: {fileID: 798516098}
   levelAnnounceCanvas: {fileID: 1683598057}
   levelAnnounceText: {fileID: 855570574}
+  enemiesPerLevel: 10
   scoreText: {fileID: 823337593}
   levelText: {fileID: 1925289207}
 --- !u!4 &214589483

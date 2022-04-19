@@ -27,18 +27,26 @@ public class EnemySpawnManager : MonoBehaviour
     /// <summary>
     ///  Minimum delay between spawning of enemies in seconds
     /// </summary>
-    private float minSpawnDelay = 5f;
+    private float minSpawnDelay = 2f;
 
     /// <summary>
     ///  Maximum delay between spawning of enemies in seconds
     /// </summary>
-    private float maxSpawnDelay = 2f;
+    private float maxSpawnDelay = 5f;
 
+    private bool isScheduled = false;
 
-    // Start is called before the first frame update
-    void Start()
+    public void OnLevelStarted(int level)
     {
-        SpawnNow();
+        // decrease spawn delay with increasing level
+        maxSpawnDelay = Mathf.Max(6f - level, minSpawnDelay);
+        Debug.Log("Enemy Max Spawn delay is now " + maxSpawnDelay);
+
+        // if not already scheduled, spawn immediately and begin scheduled cycle
+        if (!isScheduled)
+        {
+            SpawnNow();
+        }
     }
 
     /// <summary>
@@ -48,6 +56,7 @@ public class EnemySpawnManager : MonoBehaviour
     {
         float delay = Random.Range(minSpawnDelay, maxSpawnDelay);
         yield return new WaitForSeconds(delay);
+        isScheduled = false;
         SpawnNow();
     }
 
@@ -56,6 +65,11 @@ public class EnemySpawnManager : MonoBehaviour
     /// </summary>
     private void ScheduleNextSpawn()
     {
+        if (isScheduled)
+        {
+            return;
+        }
+        isScheduled = true;
         StartCoroutine(ScheduleSpawn());
     }
 
