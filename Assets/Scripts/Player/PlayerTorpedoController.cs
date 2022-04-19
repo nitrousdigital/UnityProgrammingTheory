@@ -28,4 +28,26 @@ public class PlayerTorpedoController : TorpedoController
         torpedoManager.UpdateAmmoHud();
     }
 
+    /// <summary>
+    ///  Handle collisions with the enemy ships or enemy torpedos
+    /// </summary>
+    protected void OnTriggerEnter(Collider collision)
+    {
+        // handled by EnemyController to enable
+        // enemy ship to be invincible when out of bounds
+        //if (collision.CompareTag("EnemyShip"))
+        //{
+        //    gameManager.OnEnemyHitByMissile(
+        //        gameObject,
+        //        collision.gameObject);
+        //}
+
+        if (collision.CompareTag("EnemyMissile"))
+        {
+            gameManager.OnEnemyMissileDestroyed(
+                gameObject,
+                collision.gameObject);
+        }
+    }
+
 }

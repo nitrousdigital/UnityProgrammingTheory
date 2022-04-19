@@ -12,6 +12,14 @@ public class TorpedoController : ExplodableController
     [SerializeField] private float maxX = 1.3f;
     [SerializeField] private float minX = -2.2f;
 
+    protected GameManager gameManager;
+
+    // Start is called before the first frame update
+    void Start()
+    {
+        gameManager = FindObjectOfType<GameManager>();
+    }
+
     /// <summary>
     ///  Set the speed of the torpedo
     /// </summary>

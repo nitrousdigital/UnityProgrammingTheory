@@ -11,13 +11,6 @@ public class EnemyTorpedoController : TorpedoController
     // score awarded for destroying this torpedo
     [SerializeField] private int scoreAward = 0;
 
-    private GameManager gameManager;
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        gameManager = FindObjectOfType<GameManager>();
-    }
 
     /// <summary>
     ///  Returns the score to be awarded for destroying this torpedo
@@ -35,10 +28,6 @@ public class EnemyTorpedoController : TorpedoController
         if (collision.CompareTag("Player"))
         {
             gameManager.OnPlayerHitByEnemyMissile(collision.gameObject, gameObject);
-        }
-        else if (collision.CompareTag("PlayerMissile"))
-        {
-            gameManager.OnEnemyMissileDestroyed(collision.gameObject, gameObject);
         }
     }
 
