@@ -10,7 +10,7 @@ public class SineWaveEnemyController : EnemyController
     [SerializeField] private float sinWaveMagnitude = 0.5f;
 
     /// <summary>
-    ///  The size of the sin wave (distance in pixels from the vertical origin)
+    ///  The speed at which the ship will move along the sine wave
     /// </summary>
     [SerializeField] private float cycleSpeed = 5f;
 
