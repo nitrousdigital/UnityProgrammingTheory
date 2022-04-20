@@ -6,6 +6,7 @@ public class MathUtil
 {
     private static float _PI2 = Mathf.PI* 2f;
 
+    // ENCAPSULATION
     /// <summary>
     ///   <para>Two times the well-known 3.14159265358979... value (Read Only).</para>
     /// </summary>

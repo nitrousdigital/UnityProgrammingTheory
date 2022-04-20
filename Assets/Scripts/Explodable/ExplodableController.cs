@@ -23,6 +23,11 @@ public class ExplodableController : MonoBehaviour, Explodable
     /// </summary>
     [SerializeField] private float explosionSoundVolume = 1.0f;
 
+    // ABSTRACTION
+    /// <summary>
+    ///  Play the explosion animation effect and sound and then invoke OnExploded
+    ///  to handle destruction or recycling of the game object
+    /// </summary>
     public void Explode()
     {
         // play the explosion effect
@@ -39,6 +44,7 @@ public class ExplodableController : MonoBehaviour, Explodable
         OnExploded();
     }
 
+    // ABSTRACTION
     /// <summary>
     ///  Remove this Explodable from the view.
     ///  By default this will call Destroy(gameObject).

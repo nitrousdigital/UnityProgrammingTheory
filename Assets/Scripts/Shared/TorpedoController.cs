@@ -22,6 +22,7 @@ public class TorpedoController : ExplodableController
         gameManager = FindObjectOfType<GameManager>();
     }
 
+    // ENCAPSULATION
     /// <summary>
     ///  Set the speed of the torpedo
     /// </summary>
@@ -37,6 +38,7 @@ public class TorpedoController : ExplodableController
         CheckBounds();
     }
 
+    // ABSTRACTION
     /// <summary>
     ///  Activate or deactivate this torpedo and update the ammo HUD
     /// </summary>
@@ -46,6 +48,7 @@ public class TorpedoController : ExplodableController
     }
 
     // POLYMORPHISM
+    // ABSTRACTION
     /// <summary>
     ///  Override destruction to recycle torpedos
     /// </summary>
@@ -55,6 +58,7 @@ public class TorpedoController : ExplodableController
         SetActive(false);
     }
 
+    // ABSTRACTION
     /// <summary>
     ///  Deactivate the torpedo if it flies out of bounds
     /// </summary>
@@ -68,6 +72,7 @@ public class TorpedoController : ExplodableController
         }
     }
 
+    // ABSTRACTION
     /// <summary>
     ///  Move the torpedo forward
     /// </summary>

@@ -12,6 +12,9 @@ public class AudioManager : MonoBehaviour
 
     private AudioSource audioPlayer;
 
+    /// <summary>
+    ///  Implement the singleton pattern
+    /// </summary>
     private void Awake()
     {
         if (instance != null)
@@ -27,6 +30,7 @@ public class AudioManager : MonoBehaviour
         audioPlayer = GetComponent<AudioSource>();    
     }
 
+    // ABSTRACTION
     /// <summary>
     ///  Play the specified AudioClip at the specified volume
     /// </summary>

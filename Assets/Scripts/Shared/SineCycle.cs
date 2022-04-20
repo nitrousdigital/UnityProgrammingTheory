@@ -120,6 +120,7 @@ public class SineCycle
         this.yOrigin = gameObject.transform.position.y;
     }
 
+    // ABSTRACTION
     /// <summary>
     ///  Handle a frame update by moving the game object along the path of a sine wave.
     /// </summary>

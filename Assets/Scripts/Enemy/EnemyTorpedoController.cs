@@ -13,7 +13,7 @@ public class EnemyTorpedoController : TorpedoController
     // score awarded for destroying this torpedo
     [SerializeField] private int scoreAward = 0;
 
-
+    // ENCAPSULATION
     /// <summary>
     ///  Returns the score to be awarded for destroying this torpedo
     /// </summary>

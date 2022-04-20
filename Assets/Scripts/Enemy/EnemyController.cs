@@ -101,6 +101,7 @@ public class EnemyController : TorpedoLauncher
         }
     }
 
+    // ABSTRACTION
     /// <summary>
     ///  Schedule launching of a torpedo.
     /// </summary>
@@ -109,6 +110,7 @@ public class EnemyController : TorpedoLauncher
         Invoke("LaunchTorpedoIfActive", delay);
     }
 
+    // ABSTRACTION
     /// <summary>
     ///  Launch a torpedo and schedule the next launch
     /// </summary>
@@ -121,6 +123,7 @@ public class EnemyController : TorpedoLauncher
         }
     }
 
+    // ABSTRACTION
     /// <summary>
     ///  Schedule the next torpedo launch
     /// </summary>
@@ -137,6 +140,7 @@ public class EnemyController : TorpedoLauncher
         CheckOutOfBounds();
     }
 
+    // ENCAPSULATION
     /// <summary>
     ///  The score to be awarded to the player for destroying this enemy
     /// </summary>
@@ -145,6 +149,7 @@ public class EnemyController : TorpedoLauncher
         return scoreAward;
     }
 
+    // ABSTRACTION
     /// <summary>
     ///  Move the enemy forward
     /// </summary>
@@ -153,6 +158,7 @@ public class EnemyController : TorpedoLauncher
         transform.Translate(Vector3.forward * horizontalSpeed * Time.deltaTime);
     }
 
+    // ABSTRACTION
     /// <summary>
     ///  Hook for sub-classes to move the enemy along the vertical axis
     /// </summary>
@@ -185,6 +191,7 @@ public class EnemyController : TorpedoLauncher
         }
     }
 
+    // ABSTRACTION
     /// <summary>
     ///  Check whether this enemy has flown outside of the visible bounds of the screen
     ///  and if so, it should be disposed.

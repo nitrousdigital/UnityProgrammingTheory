@@ -23,6 +23,7 @@ public class PlayerTorpedoManager : TorpedoManager
     }
 
     // POLYMORPHISM
+    // ABSTRACTION
     /// <summary>
     ///  Overrides the base torpedo firing mechanism to update
     ///  the ammo HUD after a torpedo is launched.
@@ -40,6 +41,7 @@ public class PlayerTorpedoManager : TorpedoManager
         return torpedo;
     }
 
+    // ABSTRACTION
     /// <summary>
     ///  Update the HUD with the current ammo count
     /// </summary>

@@ -38,6 +38,10 @@ public class GameManager : MonoBehaviour
     private int score;
     private int enemiesRemaining;
 
+    // ENCAPSULATION
+    /// <summary>
+    ///  Returns the current level being played.
+    /// </summary>
     public int GetLevel()
     {
         return level;
@@ -50,6 +54,10 @@ public class GameManager : MonoBehaviour
         StartLevel(1);
     }
 
+    // ABSTRACTION
+    /// <summary>
+    ///  Update the ammo HUD UI
+    /// </summary>
     public void UpdateAmmoHUD(int ammo)
     {
         for (int i = 0; i < ammoHud.Count; i++)
@@ -61,11 +69,19 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    // ABSTRACTION
+    /// <summary>
+    ///  Schedule the start of the nexy level
+    /// </summary>
     private void ScheduleNextLevel()
     {
         StartLevel(level + 1);
     }
 
+    // ABSTRACTION
+    /// <summary>
+    ///  Schedule the start of the specified level
+    /// </summary>
     private void StartLevel(int level) {
         this.level = level;
         enemiesRemaining = enemiesPerLevel;
@@ -76,12 +92,20 @@ public class GameManager : MonoBehaviour
         Invoke("BeginLevel", 3);
     }
 
+    // ABSTRACTION
+    /// <summary>
+    ///  Update the level and score HUD UI elements
+    /// </summary>
     private void UpdateHUD()
     {
         levelText.SetText("Level: " + level);
         scoreText.SetText("Score: " + score);
     }
 
+    // ABSTRACTION
+    /// <summary>
+    ///  Update the game state and UI to begin playing the level
+    /// </summary>
     private void BeginLevel()
     {
         enemySpawnManager.OnLevelStarted(level);
@@ -89,7 +113,7 @@ public class GameManager : MonoBehaviour
         ShowUiForState();
     }
 
-
+    // ENCAPSULATION
     /// <summary>
     ///  Returns true if gameplay is active and the player can be injured
     ///  and enemies can be destroyed
@@ -99,6 +123,10 @@ public class GameManager : MonoBehaviour
         return state == GameState.PLAYING || state == GameState.LEVEL_ANNOUNCE;
     }
 
+    // ABSTRACTION
+    /// <summary>
+    ///  Schedule display of the game over text
+    /// </summary>
     private void ScheduleGameOver()
     {
         if (state != GameState.GAME_OVER)
@@ -109,6 +137,7 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    // ABSTRACTION
     /// <summary>
     ///  Load the title scene
     /// </summary>
@@ -117,6 +146,7 @@ public class GameManager : MonoBehaviour
         SceneManager.LoadScene(0);
     }
 
+    // ABSTRACTION
     /// <summary>
     ///  Toggle visibility of UI components based upon the current GameState
     /// </summary>
@@ -126,6 +156,10 @@ public class GameManager : MonoBehaviour
         levelAnnounceCanvas.SetActive(state == GameState.LEVEL_ANNOUNCE);
     }
 
+    // ABSTRACTION
+    /// <summary>
+    ///  Update the game state when the player is hit by an enemy torpedo
+    /// </summary>
     public void OnPlayerHitByEnemyMissile(GameObject player, GameObject enemyMissile)
     {
         if (!IsGamePlayActive() || cheatMode)
@@ -142,6 +176,10 @@ public class GameManager : MonoBehaviour
         ScheduleGameOver();
     }
 
+    // ABSTRACTION
+    /// <summary>
+    ///  Update the game state when the player crashes into an enemy ship
+    /// </summary>
     public void OnPlayerCrashedIntoEnemyShip(GameObject player, GameObject enemy)
     {
         if (!IsGamePlayActive() || cheatMode)
@@ -158,6 +196,10 @@ public class GameManager : MonoBehaviour
         ScheduleGameOver();
     }
 
+    // ABSTRACTION
+    /// <summary>
+    ///  Update the game state when an enemy is hit by a player torpedo
+    /// </summary>
     public void OnEnemyHitByMissile(GameObject playerTorpedo, GameObject enemy)
     {
         if (!IsGamePlayActive())
@@ -181,6 +223,10 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    // ABSTRACTION
+    /// <summary>
+    ///  Update the game state when an enemy missile is hit by a player torpedo
+    /// </summary>
     public void OnEnemyMissileDestroyed(GameObject playerTorpedo, GameObject enemyTorpedo)
     {
         if (!IsGamePlayActive())
@@ -197,6 +243,10 @@ public class GameManager : MonoBehaviour
         AwardScore(enemyTorpedoController.GetScoreAward());
     }
 
+    // ABSTRACTION
+    /// <summary>
+    ///  Update the player's score and refresh the HUD
+    /// </summary>
     private void AwardScore(int score)
     {
         if (!IsGamePlayActive())

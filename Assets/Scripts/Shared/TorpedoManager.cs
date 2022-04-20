@@ -30,6 +30,7 @@ public class TorpedoManager : MonoBehaviour
         InitTorpedoPool();
     }
 
+    // ABSTRACTION
     /// <summary>
     ///  Initialize the pool of reusable torpedos
     /// </summary>
@@ -45,6 +46,7 @@ public class TorpedoManager : MonoBehaviour
     }
 
     // POLYMORPHISM - overloading
+    // ABSTRACTION
     /// <summary>
     ///  Launch a torpedo, if one is available.
     ///  Returns the torpedo that is being launched.
@@ -64,6 +66,7 @@ public class TorpedoManager : MonoBehaviour
     }
 
     // POLYMORPHISM - overloading
+    // ABSTRACTION
     /// <summary>
     ///  Launch a torpedo, if one is available and set its speed.
     ///  Returns the torpedo that is being launched.
@@ -79,6 +82,8 @@ public class TorpedoManager : MonoBehaviour
         return torpedo;
     }
 
+    // ENCAPSULATION
+    // ABSTRACTION
     /// <summary>
     ///  Returns the current number of available torpedos to be launched.
     /// </summary>
@@ -95,6 +100,7 @@ public class TorpedoManager : MonoBehaviour
         return ammo;
     }
 
+    // ABSTRACTION
     /// <summary>
     ///  Find an available inactive torpedo in the pool.
     ///  Returns null if no torpedos are currently available.

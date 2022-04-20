@@ -60,6 +60,8 @@ public class TorpedoLauncher : ExplodableController
         torpedoManager = manager;
     }
 
+    // POLYMORPHISM
+    // ABSTRACTION
     /// <summary>
     ///  Launch a torpedo, if one is available.
     ///  Returns the torpedo that is being launched.
@@ -71,6 +73,8 @@ public class TorpedoLauncher : ExplodableController
         return LaunchTorpedo(transform.position.x, transform.position.y);
     }
 
+    // POLYMORPHISM
+    // ABSTRACTION
     /// <summary>
     ///  Launch a torpedo, if one is available.
     ///  Returns the torpedo that is being launched.
@@ -82,6 +86,8 @@ public class TorpedoLauncher : ExplodableController
         return LaunchTorpedo(transform.position.x, transform.position.y, speed);
     }
 
+    // POLYMORPHISM
+    // ABSTRACTION
     /// <summary>
     ///  Launch a torpedo, if one is available.
     ///  Returns the torpedo that is being launched.
@@ -101,6 +107,8 @@ public class TorpedoLauncher : ExplodableController
         return torpedo;
     }
 
+    // POLYMORPHISM
+    // ABSTRACTION
     /// <summary>
     ///  Launch a torpedo, if one is available and set its speed.
     ///  Returns the torpedo that is being launched.
@@ -119,6 +127,7 @@ public class TorpedoLauncher : ExplodableController
         return torpedo;
     }
 
+    // ABSTRACTION
     /// <summary>
     ///  If the specified torpedo is non-null, play the launch sound.
     /// </summary>

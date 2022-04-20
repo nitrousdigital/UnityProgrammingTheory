@@ -30,6 +30,7 @@ public class SineWaveEnemyController : EnemyController
     }
 
     // POLYMORPHISM
+    // ABSTRACTION
     /// <summary>
     ///  Override the default vertical movement by moving the enemy along a sine wave
     /// </summary>

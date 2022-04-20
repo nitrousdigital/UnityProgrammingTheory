@@ -6,6 +6,7 @@
 public class TitlePlayerTorpedoController : TitleSceneTorpedoController
 {
     // POLYMORPHISM
+    // ABSTRACTION
     /// <summary>
     ///  Instruct the title scene controller to launch another player torpedo
     ///  when the existing torpedo is destroyed.

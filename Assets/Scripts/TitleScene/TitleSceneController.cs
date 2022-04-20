@@ -58,36 +58,57 @@ public class TitleSceneController : MonoBehaviour
         MoveEnemy();
     }
 
+    // ABSTRACTION
+    /// <summary>
+    ///  Move the enemy ship in the title scene
+    /// </summary>
     private void MoveEnemy()
     {
         enemySineCycle.Update();
     }
 
+    // ABSTRACTION
+    /// <summary>
+    ///  Move the player ship in the title scene
+    /// </summary>
     private void MovePlayer()
     {
         playerSineCycle.Update();
     }
 
+    // ABSTRACTION
+    /// <summary>
+    ///  Launch a player torpedo in the title scene
+    /// </summary>
     public void LaunchPlayerTorpedo()
     {
         GameObject torpedo = Instantiate(playerTorpedoPrefab);
         torpedo.transform.position = playerTurret.transform.position;
     }
 
+    // ABSTRACTION
+    /// <summary>
+    ///  Launch an enemy torpedo in the title scene
+    /// </summary>
     public void LaunchEnemyTorpedo()
     {
         GameObject torpedo = Instantiate(enemyTorpedoPrefab);
         torpedo.transform.position = enemy.transform.position;
     }
 
+    // ABSTRACTION
+    /// <summary>
+    ///  Load the scene to play the game
+    /// </summary>
     public void StartGame()
     {
         SceneManager.LoadScene(1);
     }
 
-    /**
-     * Exit the application (or play mode when in dev mode)
-     */
+    // ABSTRACTION
+    /// <summary>
+    ///  Exit the application (or play mode when in dev mode)
+    /// </summary>
     public void Exit()
     {
         #if UNITY_EDITOR

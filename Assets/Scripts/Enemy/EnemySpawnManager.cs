@@ -39,6 +39,10 @@ public class EnemySpawnManager : MonoBehaviour
 
     private bool isScheduled = false;
 
+    // ABSTRACTION
+    /// <summary>
+    ///  Receive notification that a new level has started
+    /// </summary>
     public void OnLevelStarted(int level)
     {
         // decrease spawn delay with increasing level
@@ -63,6 +67,7 @@ public class EnemySpawnManager : MonoBehaviour
         SpawnNow();
     }
 
+    // ABSTRACTION
     /// <summary>
     ///  Schedule the next spawn
     /// </summary>
@@ -76,6 +81,7 @@ public class EnemySpawnManager : MonoBehaviour
         StartCoroutine(ScheduleSpawn());
     }
 
+    // ABSTRACTION
     /// <summary>
     ///  Immediately spawn an enemy and schedule the next spawn
     /// </summary>

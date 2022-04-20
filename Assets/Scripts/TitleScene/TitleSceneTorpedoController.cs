@@ -17,6 +17,7 @@ public class TitleSceneTorpedoController : TorpedoController
     }
 
     // POLYMORPHISM
+    // ABSTRACTION
     /// <summary>
     ///  For the title screen we don't recycle torpedos, we just destroy and re-create
     /// </summary>
@@ -29,6 +30,7 @@ public class TitleSceneTorpedoController : TorpedoController
         }
     }
 
+    // ABSTRACTION
     /// <summary>
     ///  A hook for sub-classes to determine the behavior that should
     ///  occur after a torpedo has been destroyed.

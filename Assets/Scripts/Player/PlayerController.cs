@@ -55,6 +55,7 @@ public class PlayerController : TorpedoLauncher
         }
     }
 
+    // ABSTRACTION
     /// <summary>
     ///  Ensure the player does not move out of bounds
     /// </summary>
@@ -64,6 +65,7 @@ public class PlayerController : TorpedoLauncher
         ClampHorizontalPosition();
     }
 
+    // ABSTRACTION
     /// <summary>
     ///  Move the player based on user input
     /// </summary>
@@ -73,6 +75,7 @@ public class PlayerController : TorpedoLauncher
         MoveHorizontal();
     }
 
+    // ABSTRACTION
     /// <summary>
     ///  Handle vertical movement
     /// </summary>
@@ -82,6 +85,7 @@ public class PlayerController : TorpedoLauncher
         transform.Translate(Vector3.up * vertical * Time.deltaTime * speed);
     }
 
+    // ABSTRACTION
     /// <summary>
     ///  Handle horizontal movement
     /// </summary>
@@ -91,6 +95,7 @@ public class PlayerController : TorpedoLauncher
         transform.Translate(Vector3.forward * -horizontal * Time.deltaTime * speed);
     }
 
+    // ABSTRACTION
     /// <summary>
     ///  Clamp the player to the configured horizontal bounds
     /// </summary>
@@ -106,6 +111,7 @@ public class PlayerController : TorpedoLauncher
         }
     }
 
+    // ABSTRACTION
     /// <summary>
     ///  Clamp the player to the configured vertical bounds
     /// </summary>
