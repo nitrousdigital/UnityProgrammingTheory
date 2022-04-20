@@ -129,15 +129,20 @@ MonoBehaviour:
   explosionPrefab: {fileID: 6038008032709329652, guid: edcb01750df4140488d1c69b3f1a7d16, type: 3}
   explosionSound: {fileID: 8300000, guid: c7d7929f054b24df6b74e603143cce9e, type: 3}
   explosionSoundVolume: 3
+  torpedoLaunchSound: {fileID: 8300000, guid: 0155bcaefb385764299abfc5b1146e64, type: 3}
+  torpedoLaunchVolume: 0.5
+  torpedoOffsetX: 0
+  torpedoOffsetY: 0
   torpedosEquipped: 1
-  initialShootingDelay: 1
-  minShootingInterval: 0.5
-  maxShootingInterval: 2
-  hTorpedoOffset: 0
-  vTorpedoOffset: 0
+  topedoSpeed: 1
   scoreAward: 5
   minX: -2
+  invincibleX: 1.9
   horizontalSpeed: 0.3
+  increaseSpeedWithLevel: 1
+  decreaseTorpedoIntervalWithLevel: 1
+  minShootingInterval: 0.5
+  maxShootingInterval: 2
 --- !u!82 &-7014209317920410132
 AudioSource:
   m_ObjectHideFlags: 0

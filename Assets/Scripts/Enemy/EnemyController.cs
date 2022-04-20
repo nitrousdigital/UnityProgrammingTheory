@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyController : ExplodableController
+public class EnemyController : TorpedoLauncher
 {
     /// <summary>
     ///  True if this enemy launches torpedos
@@ -13,16 +13,6 @@ public class EnemyController : ExplodableController
     ///  Speed of torpedos launched by this enemy
     /// </summary>
     [SerializeField] private float topedoSpeed = 1f;
-
-    /// <summary>
-    ///  Horizontal offset from enemy position where torpedo is to be instantiated
-    /// </summary>
-    [SerializeField] private float hTorpedoOffset = 0f;
-
-    /// <summary>
-    ///  Vertical offset from enemy position where torpedo is to be instantiated
-    /// </summary>
-    [SerializeField] private float vTorpedoOffset = 0f;
 
     /// <summary>
     ///  The score to be awarded for destroying this enemy
@@ -72,18 +62,12 @@ public class EnemyController : ExplodableController
     /// </summary>
     private float initialShootingDelay = 1f;
 
-
-    /// <summary>
-    ///  The TorpedoManager to be used to launch torpedos
-    ///  from this enemy.
-    /// </summary>
-    private TorpedoManager torpedoManager;
-
     private GameManager gameManager;
 
     // Start is called before the first frame update
-    public void Start()
+    new public void Start()
     {
+        base.Start();
         gameManager = FindObjectOfType<GameManager>();
 
         // increase speed of enemy and missile with level
@@ -106,7 +90,7 @@ public class EnemyController : ExplodableController
 
         if (torpedosEquipped)
         {
-            torpedoManager = GameObject.Find("EnemyTorpedoManager").GetComponent<TorpedoManager>();
+            SetTorpedoManager(GameObject.Find("EnemyTorpedoManager").GetComponent<TorpedoManager>());
             ScheduleTorpedoLaunch(initialShootingDelay);
         }
     }
@@ -116,20 +100,20 @@ public class EnemyController : ExplodableController
     /// </summary>
     private void ScheduleTorpedoLaunch(float delay)
     {
-        Invoke("LaunchTorpedo", delay);
+        Invoke("LaunchTorpedoIfActive", delay);
     }
 
     /// <summary>
     ///  Launch a torpedo and schedule the next launch
     /// </summary>
-    private void LaunchTorpedo()
+    private void LaunchTorpedoIfActive()
     {
         if (gameObject != null && gameObject.activeSelf)
         {
-            torpedoManager.FireTorpedo(
-                gameObject.transform.position.x + hTorpedoOffset,
-                gameObject.transform.position.y + vTorpedoOffset,
-                topedoSpeed);
+            LaunchTorpedo(topedoSpeed);
+                //gameObject.transform.position.x,
+                //gameObject.transform.position.y,
+                //topedoSpeed);
             ScheduleNextTorpedoLaunch();
         }
     }

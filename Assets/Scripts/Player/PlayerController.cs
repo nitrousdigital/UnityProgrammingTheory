@@ -2,24 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerController : ExplodableController
+public class PlayerController : TorpedoLauncher
 {
-
-    /// <summary>
-    ///  The audio clip to be played when launching a torpedo
-    /// </summary>
-    [SerializeField] private AudioClip torpedoLaunchSound;
-
-    /// <summary>
-    ///  The audio level for the sound played when launching a torpedo
-    /// </summary>
-    [SerializeField] private float torpedoLaunchVolume = 0.5f;
-
-    /// <summary>
-    ///  Horizontal offset from the player where the torpedo should be displayed when launched
-    /// </summary>
-    [SerializeField] private float missileOffsetX = 0f;
-
     /// <summary>
     ///  Movement speed of the ship
     /// </summary>
@@ -45,17 +29,11 @@ public class PlayerController : ExplodableController
     /// </summary>
     private float maxX = 1.3f;
 
-    private AudioSource audioPlayer;
-    private PlayerTorpedoManager torpedoManager;
-
-    private GameManager gameManager;
-
     // Start is called before the first frame update
-    void Start()
+    new void Start()
     {
-        gameManager = FindObjectOfType<GameManager>();
-        torpedoManager = FindObjectOfType<PlayerTorpedoManager>();
-        audioPlayer = GetComponent<AudioSource>();
+        base.Start();
+        SetTorpedoManager(FindObjectOfType<PlayerTorpedoManager>());
     }
 
     // Update is called once per frame
@@ -66,7 +44,7 @@ public class PlayerController : ExplodableController
 
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            FireWeapon();
+            LaunchTorpedo();
         }
     }
 
@@ -86,18 +64,6 @@ public class PlayerController : ExplodableController
     {
         MoveVertical();
         MoveHorizontal();
-    }
-
-    /// <summary>
-    ///  If an inactive torpedo is available then launch it.
-    /// </summary>
-    private void FireWeapon()
-    {
-        GameObject torpedo = torpedoManager.FireTorpedo(transform.position.x + missileOffsetX, transform.position.y);
-        if (torpedo != null)
-        {
-            audioPlayer.PlayOneShot(torpedoLaunchSound, torpedoLaunchVolume);
-        }
     }
 
     /// <summary>
