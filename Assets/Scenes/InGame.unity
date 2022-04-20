@@ -229,6 +229,7 @@ MonoBehaviour:
   enemiesPerLevel: 10
   scoreText: {fileID: 823337593}
   levelText: {fileID: 1925289207}
+  cheatMode: 0
 --- !u!4 &214589483
 Transform:
   m_ObjectHideFlags: 0

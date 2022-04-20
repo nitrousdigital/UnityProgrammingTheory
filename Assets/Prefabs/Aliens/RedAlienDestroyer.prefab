@@ -133,6 +133,8 @@ MonoBehaviour:
   torpedoLaunchVolume: 0.5
   torpedoOffsetX: 0
   torpedoOffsetY: 0
+  minWeaponsEnabledX: -1
+  maxWeaponsEnabledX: 1.4
   torpedosEquipped: 1
   topedoSpeed: 1
   scoreAward: 5
