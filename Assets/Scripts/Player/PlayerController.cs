@@ -2,6 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+// INHERITANCE
+
+/// <summary>
+///  Controller responsible for moving and restricting the movement of the player ship
+///  and handling user input to launch torpedos
+/// </summary>
 public class PlayerController : TorpedoLauncher
 {
     /// <summary>
@@ -29,6 +35,7 @@ public class PlayerController : TorpedoLauncher
     /// </summary>
     private float maxX = 1.3f;
 
+    // POLYMORPHISM
     // Start is called before the first frame update
     new void Start()
     {

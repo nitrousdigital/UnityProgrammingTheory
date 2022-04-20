@@ -2,6 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+// INHERITANCE
+
+/// <summary>
+///  Controls the movement of enemy ships and detects collisions with
+///  the player and player torpedos
+/// </summary>
 public class EnemyController : TorpedoLauncher
 {
     /// <summary>
@@ -64,7 +70,7 @@ public class EnemyController : TorpedoLauncher
 
     private GameManager gameManager;
 
-    // Start is called before the first frame update
+    // POLYMORPHISM
     new public void Start()
     {
         base.Start();

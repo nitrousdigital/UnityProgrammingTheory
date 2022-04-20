@@ -2,6 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+// INHERITANCE
+
+/// <summary>
+///  Base class for game objects that can launch torpedoes.
+///  
+///  Obtains torpeodes from a configured Torpedo Manager
+///  and plays a sound when a torpedo is launched.
+/// </summary>
 public class TorpedoLauncher : ExplodableController
 {
     /// <summary>

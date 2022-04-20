@@ -2,11 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+// INHERITANCE
+
 /// <summary>
-///  Responsible for moving player launched torpedos.
-///  Inherits the base torpedo controller behavior and
-///  updates the HUD with the current ammo level when a torpedo
-///  is activated/deactivated.
+///  Responsible for moving torpedos that are launched by the player.
+///  
+///  Detects collisions with enemy torpedos and notifies the Torpedo Manager
+///  when a torpedo is activated/deactivated to update the HUD with the current ammo level
 /// </summary>
 public class PlayerTorpedoController : TorpedoController
 {
@@ -19,8 +21,10 @@ public class PlayerTorpedoController : TorpedoController
     }
 
 
+    // POLYMORPHISM
     /// <summary>
-    ///  Activate or deactivate this torpedo and update the ammo HUD
+    ///  Override the default SetActive behavior in order to
+    ///  update the ammo HUD
     /// </summary>
     public override void SetActive(bool active)
     {
@@ -33,15 +37,6 @@ public class PlayerTorpedoController : TorpedoController
     /// </summary>
     protected void OnTriggerEnter(Collider collision)
     {
-        // handled by EnemyController to enable
-        // enemy ship to be invincible when out of bounds
-        //if (collision.CompareTag("EnemyShip"))
-        //{
-        //    gameManager.OnEnemyHitByMissile(
-        //        gameObject,
-        //        collision.gameObject);
-        //}
-
         if (collision.CompareTag("EnemyMissile"))
         {
             gameManager.OnEnemyMissileDestroyed(

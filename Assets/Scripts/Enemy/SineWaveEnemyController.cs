@@ -2,6 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+// INHERITANCE
+
+/// <summary>
+///  Extends the base controller for enemies
+///  adding vertical movement along the path of a sine wave
+/// </summary>
 public class SineWaveEnemyController : EnemyController
 {
     /// <summary>
@@ -16,12 +22,17 @@ public class SineWaveEnemyController : EnemyController
 
     private SineCycle ySineCycle;
 
+    // POLYMORPHISM
     new public void Start()
     {
         base.Start();
         ySineCycle = new SineCycle(sinWaveMagnitude, cycleSpeed, gameObject);
     }
 
+    // POLYMORPHISM
+    /// <summary>
+    ///  Override the default vertical movement by moving the enemy along a sine wave
+    /// </summary>
     protected override void MoveVertical()
     {
         ySineCycle.Update();

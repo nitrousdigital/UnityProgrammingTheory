@@ -7,6 +7,11 @@ using UnityEngine.SceneManagement;
 using UnityEditor;
 #endif
 
+/// <summary>
+///  Main controller for the title scene.
+///  
+///  Periodically launches player and enemy torpedos and animates movement for the player and enemy
+/// </summary>
 public class TitleSceneController : MonoBehaviour
 {
     /// <summary>

@@ -2,9 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+// INHERITANCE
+
 /// <summary>
 ///  Controls torpedos that are launched by enemies.
-///  Detects collisions with the player and player torpedos.
+///  Detects collisions with the player
 /// </summary>
 public class EnemyTorpedoController : TorpedoController
 {

@@ -4,6 +4,10 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using TMPro;
 
+/// <summary>
+///  The main controller for the in-game scene.
+///  Manages the overall game state.
+/// </summary>
 public class GameManager : MonoBehaviour
 {
     public enum GameState

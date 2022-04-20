@@ -44,6 +44,7 @@ public class TorpedoManager : MonoBehaviour
         }
     }
 
+    // POLYMORPHISM - overloading
     /// <summary>
     ///  Launch a torpedo, if one is available.
     ///  Returns the torpedo that is being launched.
@@ -62,6 +63,7 @@ public class TorpedoManager : MonoBehaviour
         return torpedo;
     }
 
+    // POLYMORPHISM - overloading
     /// <summary>
     ///  Launch a torpedo, if one is available and set its speed.
     ///  Returns the torpedo that is being launched.

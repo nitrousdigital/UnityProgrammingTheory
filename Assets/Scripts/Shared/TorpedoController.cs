@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+// INHERITANCE
+
 /// <summary>
 ///  Responsible for moving a torpedo and for setting it inactive when it either explodes or travels out of bounds
 /// </summary>
@@ -43,6 +45,7 @@ public class TorpedoController : ExplodableController
         gameObject.SetActive(active);
     }
 
+    // POLYMORPHISM
     /// <summary>
     ///  Override destruction to recycle torpedos
     /// </summary>

@@ -1,25 +1,17 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+// INHERITANCE
 
 /// <summary>
-///  Animate the player torpedo on the title screen
+///  Manages the destruction and re-creation of player torpedoes on the title screen
 /// </summary>
-public class TitlePlayerTorpedoController : TorpedoController
+public class TitlePlayerTorpedoController : TitleSceneTorpedoController
 {
-    private TitleSceneController titleScene;
-
-    private void Awake()
+    // POLYMORPHISM
+    /// <summary>
+    ///  Instruct the title scene controller to launch another player torpedo
+    ///  when the existing torpedo is destroyed.
+    /// </summary>
+    protected override void OnTorpedoDestroyed()
     {
-        titleScene = FindObjectOfType<TitleSceneController>();
-    }
-
-    public override void SetActive(bool active)
-    {
-        if (!active)
-        {
-            Destroy(gameObject);
-            titleScene.LaunchPlayerTorpedo();
-        }
+        titleScene.LaunchPlayerTorpedo();
     }
 }

@@ -6,7 +6,6 @@ using UnityEngine;
 ///  Moves a GameObject along a Sine wave.
 ///  Affects either the x-axis, y-axis or both.
 /// </summary>
-
 public class SineCycle
 {
     private GameObject gameObject;
@@ -121,6 +120,9 @@ public class SineCycle
         this.yOrigin = gameObject.transform.position.y;
     }
 
+    /// <summary>
+    ///  Handle a frame update by moving the game object along the path of a sine wave.
+    /// </summary>
     public void Update()
     {
         float x = gameObject.transform.position.x;

@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+// INHERITANCE
+
 /// <summary>
 ///  Manages a pool of torpedos that can be launched by the player.
 ///  Updates the game HUD to show the number of available torpedos.
@@ -11,6 +13,7 @@ public class PlayerTorpedoManager : TorpedoManager
 
     private GameManager gameManager;
 
+    // POLYMORPHISM
     // Start is called before the first frame update
     new public void Start()
     {
@@ -19,8 +22,11 @@ public class PlayerTorpedoManager : TorpedoManager
         UpdateAmmoHud();
     }
 
+    // POLYMORPHISM
     /// <summary>
-    ///  Activate a torpedo, update the HUD and return the activated torpedo.
+    ///  Overrides the base torpedo firing mechanism to update
+    ///  the ammo HUD after a torpedo is launched.
+    ///  
     ///  Returns null if no inactive torpedos are found.
     /// </summary>
     new public GameObject FireTorpedo(float x, float y)

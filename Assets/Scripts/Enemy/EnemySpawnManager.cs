@@ -2,6 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+///  Manages spawning of enemy ships
+/// </summary>
 public class EnemySpawnManager : MonoBehaviour
 {
     /// <summary>
