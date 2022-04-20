@@ -111,9 +111,6 @@ public class EnemyController : TorpedoLauncher
         if (gameObject != null && gameObject.activeSelf)
         {
             LaunchTorpedo(topedoSpeed);
-                //gameObject.transform.position.x,
-                //gameObject.transform.position.y,
-                //topedoSpeed);
             ScheduleNextTorpedoLaunch();
         }
     }
