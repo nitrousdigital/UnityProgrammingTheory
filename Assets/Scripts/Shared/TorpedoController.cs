@@ -8,9 +8,9 @@ using UnityEngine;
 public class TorpedoController : ExplodableController
 {
 
-    [SerializeField] private float speed = 1f;
-    [SerializeField] private float maxX = 1.3f;
-    [SerializeField] private float minX = -2.2f;
+    [SerializeField] protected float speed = 1f;
+    [SerializeField] protected float maxX = 1.3f;
+    [SerializeField] protected float minX = -2.2f;
 
     protected GameManager gameManager;
 

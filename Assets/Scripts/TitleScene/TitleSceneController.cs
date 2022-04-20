@@ -31,7 +31,10 @@ public class TitleSceneController : MonoBehaviour
 
     [SerializeField] private GameObject enemyTorpedoPrefab;
     [SerializeField] private GameObject enemy;
+
+    [SerializeField] private GameObject playerTorpedoPrefab;
     [SerializeField] private GameObject player;
+    [SerializeField] private GameObject playerTurret;
 
     private SineCycle playerSineCycle;
     private SineCycle enemySineCycle;
@@ -40,7 +43,8 @@ public class TitleSceneController : MonoBehaviour
     {
         playerSineCycle = new SineCycle(playerSinWaveMagnitude, playerCycleSpeed, player);
         enemySineCycle = new SineCycle(enemy, enemySinWaveMagnitude, enemyCycleSpeed);
-        LaunchTorpedo();
+        LaunchEnemyTorpedo();
+        Invoke("LaunchPlayerTorpedo", 1f);
     }
 
     void Update()
@@ -59,7 +63,13 @@ public class TitleSceneController : MonoBehaviour
         playerSineCycle.Update();
     }
 
-    public void LaunchTorpedo()
+    public void LaunchPlayerTorpedo()
+    {
+        GameObject torpedo = Instantiate(playerTorpedoPrefab);
+        torpedo.transform.position = playerTurret.transform.position;
+    }
+
+    public void LaunchEnemyTorpedo()
     {
         GameObject torpedo = Instantiate(enemyTorpedoPrefab);
         torpedo.transform.position = enemy.transform.position;
