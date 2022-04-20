@@ -25,6 +25,8 @@ public class GameManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI scoreText;
     [SerializeField] private TextMeshProUGUI levelText;
 
+    [SerializeField] private bool cheatMode = false;
+
     private EnemySpawnManager enemySpawnManager;
 
     private GameState state;
@@ -122,7 +124,7 @@ public class GameManager : MonoBehaviour
 
     public void OnPlayerHitByEnemyMissile(GameObject player, GameObject enemyMissile)
     {
-        if (!IsGamePlayActive())
+        if (!IsGamePlayActive() || cheatMode)
         {
             return;
         }
@@ -138,7 +140,7 @@ public class GameManager : MonoBehaviour
 
     public void OnPlayerCrashedIntoEnemyShip(GameObject player, GameObject enemy)
     {
-        if (!IsGamePlayActive())
+        if (!IsGamePlayActive() || cheatMode)
         {
             return;
         }
