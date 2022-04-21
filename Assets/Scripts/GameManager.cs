@@ -114,6 +114,7 @@ public class GameManager : MonoBehaviour
     }
 
     // ENCAPSULATION
+    // ABSTRACTION
     /// <summary>
     ///  Returns true if gameplay is active and the player can be injured
     ///  and enemies can be destroyed
